@@ -7,6 +7,7 @@
 import app from '../app'
 import Debug from 'debug'
 import http from 'http'
+import configKeys from '../config/keys'
 
 const debug = Debug('t3-api')
 
@@ -14,7 +15,7 @@ const debug = Debug('t3-api')
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3000')
+const port = normalizePort(configKeys.port)
 app.set('port', port)
 
 /**
