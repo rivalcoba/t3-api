@@ -25,9 +25,9 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Bienevida a la api
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.json({
-    message: '🦄🌈✨👋🌎🌍🌏✨🌈🦄'
+    message: '🦄🌈✨ Welcomento T3-API ✨🌈🦄'
   })
 })
 // TODO: Borrar estas lineas
