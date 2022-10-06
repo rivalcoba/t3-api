@@ -3,6 +3,25 @@ import dotenv from 'dotenv'
 // Cargando las variables de entorno
 dotenv.config()
 
+// Constantes
+const devConfig = {}
+const prodConfig = {}
+const defaultConfig = {
+  port: process.env.PORT || 3000
+}
+
+function envConfig(env) {
+  switch (env) {
+    case 'development':
+      return devConfig
+    case 'production':
+      return prodConfig
+    default:
+      return prodConfig
+  }
+}
+
 export default {
-  port: process.env.PORT || '3000'
+  ...defaultConfig,
+  ...envConfig(process.env.NODE_ENV)
 }
