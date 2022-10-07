@@ -89,5 +89,8 @@ function onListening () {
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port
-  debug(`Listening on ${bind} ⚙ Runing on ${process.env.NODE_ENV}`)
+  configKeys.env === 'production' &&
+    console.log(`✒ Listening on ${bind} ⚙ Runing on ${configKeys.env}`)
+  configKeys.env === 'development' &&
+    debug(`Listening on ${bind} ⚙ Runing on ${configKeys.env}`)
 }

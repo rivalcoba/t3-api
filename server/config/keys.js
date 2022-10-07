@@ -4,13 +4,17 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 // Constantes
-const devConfig = {}
-const prodConfig = {}
+const devConfig = {
+  env: 'development'
+}
+const prodConfig = {
+  env: 'production'
+}
 const defaultConfig = {
   port: process.env.PORT || 3000
 }
 
-function envConfig(env) {
+function envConfig (env) {
   switch (env) {
     case 'development':
       return devConfig

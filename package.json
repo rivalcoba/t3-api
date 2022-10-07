@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "start": "NODE_ENV=production node ./dist/bin/www",
-    "dev": "NODE_ENV=development DEBUG=t3-api babel-watch ./bin/www",
+    "dev": "NODE_ENV=development DEBUG=t3-api babel-watch ./server/bin/www",
     "clean": "rm -rf ./dist",
-    "build": "npm run clean && babel . --ignore node_modules --copy-files --no-copy-ignored --out-dir dist",
+    "build": "npm run clean && babel ./server --copy-files --out-dir dist",
     "fix": "standard --fix"
   },
   "dependencies": {
