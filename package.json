@@ -18,12 +18,14 @@
     "hbs": "^4.2.0",
     "helmet": "^6.0.0",
     "http-errors": "~1.6.3",
+    "mongoose": "^6.6.5",
     "morgan": "~1.9.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.19.3",
     "@babel/node": "^7.19.1",
+    "@babel/plugin-syntax-top-level-await": "^7.14.5",
     "@babel/preset-env": "^7.19.3",
     "babel-watch": "^7.7.0",
     "eslint": "^8.24.0",

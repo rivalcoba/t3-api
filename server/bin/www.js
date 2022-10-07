@@ -5,6 +5,7 @@
  */
 
 import app from '../app'
+import '../config/database'
 import Debug from 'debug'
 import http from 'http'
 import configKeys from '../config/keys'

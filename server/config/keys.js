@@ -5,10 +5,12 @@ dotenv.config()
 
 // Constantes
 const devConfig = {
-  env: 'development'
+  env: 'development',
+  mongoUrl: process.env.MONGO_URL
 }
 const prodConfig = {
-  env: 'production'
+  env: 'production',
+  mongoUrl: process.env.MONGO_URL_PROD
 }
 const defaultConfig = {
   port: process.env.PORT || 3000
