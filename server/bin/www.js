@@ -6,11 +6,9 @@
 
 import app from '../app'
 import '../config/database'
-import Debug from 'debug'
 import http from 'http'
 import configKeys from '../config/keys'
-
-const debug = Debug('t3-api')
+import debug from '../services/logger'
 
 /**
  * Get port from environment and store in Express.
@@ -91,7 +89,7 @@ function onListening () {
     ? 'pipe ' + addr
     : 'port ' + addr.port
   configKeys.env === 'production' &&
-    console.log(`✒ Listening on ${bind} ⚙ Runing on ${configKeys.env}`)
+    debug(`✒ Listening on ${bind} ⚙ Runing on ${configKeys.env}`)
   configKeys.env === 'development' &&
     debug(`Listening on ${bind} ⚙ Runing on ${configKeys.env}`)
 }

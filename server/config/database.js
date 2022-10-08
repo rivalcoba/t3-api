@@ -2,6 +2,8 @@
 import mongoose from 'mongoose'
 // 2 Importando llaves
 import configKeys from './keys'
+// 3 Imporntado logger
+import debug from '../services/logger'
 
 // Intentando la conexion
 (async () => {
@@ -9,11 +11,8 @@ import configKeys from './keys'
   mongoose.Promise = global.Promise
   try {
     const connection = await mongoose.connect(configKeys.mongoUrl)
-    if (connection) console.log('> 🎉 🛢 Conexion exitosa')
+    if (connection) debug('🎉 Conexion exitosa a la BD 🛢')
   } catch (error) {
-    console.log(`🥀 No se pudo realizar la conexion debido a: ${error.message}`)
+    debug(`🥀 No se pudo realizar la conexion debido a: ${error.message}`)
   }
-  mongoose.connection.once('open', () => console.log('MongoDB Running')).on('error', e => {
-    throw e
-  })
 })()
