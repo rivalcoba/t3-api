@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
+import bcrypt from 'bcryptjs'
 import validator from 'validator'
 
 // Importando Regex del password
@@ -47,6 +48,28 @@ const UserSchema = new Schema({
     }
   }
 })
+
+// MONGO DB HOOKS
+// Creating a Pre
+// ref: https://mongoosejs.com/docs/middleware.html#pre
+UserSchema.pre('save', function (next) {
+  // Verificando si se ha modificado el password
+  if (this.isModified('password')) {
+    // Encriptando el password
+    this.password = this.hashPassword(this.password)
+  }
+  return next()
+})
+
+// Creando métodos para este esquema
+UserSchema.methods = {
+  hashPassword (password) {
+    return bcrypt.hashSync(password)
+  },
+  authenticateUser (password) {
+    return bcrypt.compareSync(password, this.password)
+  }
+}
 
 // Compilado el esquema en un modelo y exportandolo por defect
 export default mongoose.model('User', UserSchema)

@@ -7,6 +7,7 @@ import helmet from 'helmet'
 import cors from 'cors'
 import configKeys from './config/keys'
 import addApiRoutes from './api/v1'
+const { ValidationError } = require('express-validation')
 
 const app = express()
 
@@ -42,6 +43,11 @@ app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
+
+  // Verificando errores de validacion
+  if (err instanceof ValidationError) {
+    return res.status(err.statusCode).json(err)
+  }
 
   // render the error page
   res.status(err.status || 500)
