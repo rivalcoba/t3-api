@@ -6,7 +6,7 @@ dotenv.config()
 // Constantes
 const devConfig = {
   env: 'development',
-  mongoUrl: process.env.MONGO_URL
+  mongoUrl: process.env.MONGO_URL_DEV
 }
 const prodConfig = {
   env: 'production',
