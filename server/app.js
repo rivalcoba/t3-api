@@ -5,10 +5,8 @@ import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import helmet from 'helmet'
 import cors from 'cors'
-// import configKeys from './config/keys'
-// TODO: Borrar
-// const indexRouter = require('./routes/index')
-// const usersRouter = require('./routes/users')
+import configKeys from './config/keys'
+import addApiRoutes from './api/v1'
 
 const app = express()
 
@@ -17,12 +15,15 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs')
 
 app.use(logger('dev'))
-app.use(helmet())
+if (configKeys.env === 'production') app.use(helmet())
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
+
+// Agregando Rutas de API
+addApiRoutes(app)
 
 // Bienevida a la api
 app.get('*', (req, res) => {
@@ -30,9 +31,6 @@ app.get('*', (req, res) => {
     message: '🦄🌈✨ Welcomento T3-API ✨🌈🦄'
   })
 })
-// TODO: Borrar estas lineas
-// app.use('/', indexRouter)
-// app.use('/users', usersRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -50,4 +48,3 @@ app.use(function (err, req, res, next) {
   res.render('error')
 })
 export default app
-module.exports = app
