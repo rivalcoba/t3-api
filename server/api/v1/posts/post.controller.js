@@ -20,3 +20,13 @@ export async function getPostById (req, res) {
     return res.status(HttpStatus.BAD_REQUEST).json(error)
   }
 }
+
+// [R] Obtener todos los post
+export async function getPostsList (req, res) {
+  try {
+    const posts = await Post.find().populate('user')
+    return res.status(HttpStatus.OK).json(posts)
+  } catch (error) {
+    return res.status(HttpStatus.BAD_REQUEST).json(error)
+  }
+}

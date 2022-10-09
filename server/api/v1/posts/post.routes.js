@@ -16,5 +16,7 @@ router.post('/', authJwt, validate(postValidation.createPost), postController.cr
 
 // GET /api/v1/post/<id>
 router.get('/:id', postController.getPostById)
+// GET /api/v1/post/<id>
+router.get('/', postController.getPostsList)
 
 export default router
