@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import helmet from 'helmet'
 import cors from 'cors'
+import passport from 'passport'
 import configKeys from './config/keys'
 import addApiRoutes from './api/v1'
 const { ValidationError } = require('express-validation')
@@ -16,6 +17,8 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs')
 
 app.use(logger('dev'))
+// Passport Middleware
+app.use(passport.initialize())
 if (configKeys.env === 'production') app.use(helmet())
 app.use(cors())
 app.use(express.json())

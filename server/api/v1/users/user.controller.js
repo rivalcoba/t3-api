@@ -1,6 +1,6 @@
 import User from './user.model'
 
-// Exportando función de registro o signUp
+// Exportando Action Method de registro o signUp
 export async function signUp (req, res) {
   try {
     const user = await User.create(req.body)
@@ -8,4 +8,16 @@ export async function signUp (req, res) {
   } catch (e) {
     return res.status(500).json(e)
   }
+}
+
+// Action Method para el login
+export function login (req, res, next) {
+  res.status(200).json(req.user)
+  // res.status(200).json({ test: 'test' })
+  // return next()
+}
+
+export async function getUser (req, res) {
+  const user = await User.findOne({ email: 'ivan.rivalcoba@gmail.com' })
+  res.status(200).json(user)
 }
