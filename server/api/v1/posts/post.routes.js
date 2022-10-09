@@ -19,4 +19,7 @@ router.get('/:id', postController.getPostById)
 // GET /api/v1/post/<id>
 router.get('/', postController.getPostsList)
 
+// PATCH /api/v1/post/<id>
+router.patch('/:id', authJwt, validate(postValidation.updatePost), postController.updatePost)
+
 export default router

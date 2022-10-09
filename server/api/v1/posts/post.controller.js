@@ -33,3 +33,22 @@ export async function getPostsList (req, res) {
     return res.status(HttpStatus.BAD_REQUEST).json(error)
   }
 }
+
+// [U] Actualizar un Post
+export async function updatePost (req, res) {
+  try {
+    const post = await Post.findById(req.params.id)
+    if (!post.user.equals(req.user._id)) {
+      debug('🎆 Sin autorización')
+      return res.sendStatus(HttpStatus.UNAUTHORIZED)
+    }
+
+    Object.keys(req.body).forEach(key => {
+      post[key] = req.body[key]
+    })
+
+    return res.status(HttpStatus.OK).json(await post.save())
+  } catch (error) {
+    return res.status(HttpStatus.BAD_REQUEST).json(error)
+  }
+}
