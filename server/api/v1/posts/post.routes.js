@@ -16,7 +16,7 @@ router.post('/', authJwt, validate(postValidation.createPost), postController.cr
 
 // [R] GET /api/v1/post/<id>
 router.get('/:id', postController.getPostById)
-// [R] GET /api/v1/post/<id>
+// [R] GET /api/v1/post/
 router.get('/', postController.getPostsList)
 
 // [U] PATCH /api/v1/post/<id>
