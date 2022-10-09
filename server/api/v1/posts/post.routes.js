@@ -4,10 +4,14 @@ import { Router } from 'express'
 import * as postController from './post.controller'
 // Importando middleware de validacion
 import { authJwt } from '../../../services/auth.services'
+// Validador
+import postValidation from './post.validations'
+// Importando validate para validación
+import { validate } from 'express-validation'
 
 const router = new Router()
 
 // GET /api/v1/post
-router.post('/', authJwt, postController.createPost)
+router.post('/', authJwt, validate(postValidation.createPost), postController.createPost)
 
 export default router

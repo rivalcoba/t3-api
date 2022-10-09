@@ -1,4 +1,3 @@
-// import Joi from 'joi'
 import { Joi } from 'express-validation'
 // Reglas del password en Regex
 export const passwordReg = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/
