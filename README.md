@@ -4,6 +4,9 @@ Equipo T3
 ## Descripción
 Api que sigue standard REST para realizar publicaciones sobre diferentes temas.
 
+## Enlace al proyecto
+[t3-api](https://t3-api-bedu.herokuapp.com/)
+
 ## Historias de usuario
 1. Como super usuario de t3-api quiero poder visualizar todas las publicaciones realizadas por los demás usuarios para poder moderar las publicaciones.
 2. Como super usuario de t3-api quiero poder borrar cualquier publicación realizada por los demás usuarios en caso de que infrinjan las reglas del api para garantizar un entorno seguro para todos.
