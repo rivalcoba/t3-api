@@ -41,13 +41,13 @@ const jwtOpts = {
 const jwtStrategy = new JWTStrategy(jwtOpts, async (payload, done) => {
   try {
     // Identificando usuario por su ID
-    const user = User.findById(payload._id)
+    const user = await User.findById(payload._id)
     // Si no hay usuario
     if (!user) {
       return done(null, false, { message: 'Usuario no encontrado' })
     }
     // Si hay usuario retornalo
-    return done(null, user)
+    done(null, user)
   } catch (error) {
     return done(error, false)
   }

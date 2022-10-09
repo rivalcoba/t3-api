@@ -62,6 +62,7 @@ PostSchema.methods = {
 // Los estaticos aplican a toda la coleccion
 PostSchema.statics = {
   createPost (args, user) {
+    console.log(`Creando pos con este usuario: ${user}`)
     return this.create({
       ...args,
       user

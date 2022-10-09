@@ -14,7 +14,7 @@ export async function createPost (req, res) {
 // [R] Obtener un post por su id
 export async function getPostById (req, res) {
   try {
-    const post = await Post.findById(req.params.id)
+    const post = await Post.findById(req.params.id).populate('user')
     return res.status(HttpStatus.OK).json(post)
   } catch (error) {
     return res.status(HttpStatus.BAD_REQUEST).json(error)
