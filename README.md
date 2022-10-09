@@ -1,4 +1,5 @@
 # T3-API BEDU
+Equipo T3
 
 ## Descripción
 Api que sigue standard REST para realizar publicaciones sobre diferentes temas.
