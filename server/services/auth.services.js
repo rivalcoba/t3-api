@@ -8,7 +8,7 @@ const options = {
   usernameField: 'email'
 }
 // creando estrategia
-const strategy = new LocalStrategy(options, async (email, password, done) => {
+const localStrategy = new LocalStrategy(options, async (email, password, done) => {
   // Se usa el modelo de usuario para validar la existencia del usuario
   try {
     debug(`🧙‍♀️ Buscando usuario para autenticación ${email}`)
@@ -30,7 +30,7 @@ const strategy = new LocalStrategy(options, async (email, password, done) => {
 })
 
 // Registrando la estrategia
-passport.use(strategy)
+passport.use(localStrategy)
 
 // Exportando middleware de autenticacion sin mantener las sesiones
 export const authLocal = passport.authenticate('local', { session: false })

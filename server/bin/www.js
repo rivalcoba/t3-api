@@ -89,7 +89,7 @@ function onListening () {
     ? 'pipe ' + addr
     : 'port ' + addr.port
   configKeys.env === 'production' &&
-    debug(`✒ Listening on ${bind} ⚙ Runing on ${configKeys.env}`)
+    debug(`✨ Listening on ${bind} ⚙ Runing on ${configKeys.env}`)
   configKeys.env === 'development' &&
-    debug(`Listening on ${bind} ⚙ Runing on ${configKeys.env}`)
+    debug(`✨ Listening on ${bind} 🔥 Runing on ${configKeys.env} 🔥`)
 }
