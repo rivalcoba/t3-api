@@ -1,5 +1,6 @@
 import HttpStatus from 'http-status'
 import Post from './post.model'
+import debug from '../../../services/logger'
 
 // [C] Crear un Post
 export async function createPost (req, res) {
@@ -23,8 +24,10 @@ export async function getPostById (req, res) {
 
 // [R] Obtener todos los post
 export async function getPostsList (req, res) {
+  const limit = parseInt(req.query.limit, 0)
+  const skip = parseInt(req.query.skip, 0)
   try {
-    const posts = await Post.find().populate('user')
+    const posts = await Post.list({ limit, skip })
     return res.status(HttpStatus.OK).json(posts)
   } catch (error) {
     return res.status(HttpStatus.BAD_REQUEST).json(error)
