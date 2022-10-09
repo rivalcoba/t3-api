@@ -74,7 +74,7 @@ UserSchema.methods = {
   createToken () {
     return jwt.sign({ _id: this._id }, configKyes.jwtSecret)
   },
-  toJson () {
+  toJSON () {
     return {
       _id: this._id,
       userName: this.userName,

@@ -13,7 +13,7 @@ export async function signUp (req, res) {
 
 // Action Method para el login
 export function login (req, res, next) {
-  res.status(HttpStatus.OK).json(req.user.toJson())
+  res.status(HttpStatus.OK).json(req.user)
   // return next()
 }
 

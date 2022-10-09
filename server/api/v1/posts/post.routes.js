@@ -11,7 +11,10 @@ import { validate } from 'express-validation'
 
 const router = new Router()
 
-// GET /api/v1/post
+// POST /api/v1/post
 router.post('/', authJwt, validate(postValidation.createPost), postController.createPost)
+
+// GET /api/v1/post/<id>
+router.get('/:id', postController.getPostById)
 
 export default router
