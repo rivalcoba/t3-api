@@ -33,7 +33,7 @@ const localStrategy = new LocalStrategy(options, async (email, password, done) =
 
 // Objetos de opciones para la estrategia de JWT
 const jwtOpts = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('authorization'),
   secretOrKey: configKeys.jwtSecret
 }
 
