@@ -7,7 +7,7 @@ import userValidation from './user.validations'
 // Importando validate para validación
 import { validate } from 'express-validation'
 // Importando configuracion de validacion
-import { authLocal } from '../../../services/auth.services'
+import { authLocal, authJwt } from '../../../services/auth.services'
 
 // Instanciando el router
 const router = new Router()
@@ -24,6 +24,6 @@ router.post('/signup', validate(userValidation.signup, {}, {}), userController.s
 router.post('/login', authLocal, userController.login)
 
 // GET /api/v1/user/getuser
-router.get('/getuser', userController.getUser)
+router.get('/getuser', authJwt, userController.getUser)
 
 export default router

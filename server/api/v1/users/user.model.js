@@ -1,6 +1,8 @@
 import mongoose, { Schema } from 'mongoose'
 import bcrypt from 'bcryptjs'
 import validator from 'validator'
+import jwt from 'jsonwebtoken'
+import configKyes from '../../../config/keys'
 
 // Importando Regex del password
 import { passwordReg } from './user.validations'
@@ -68,6 +70,16 @@ UserSchema.methods = {
   },
   authenticateUser (password) {
     return bcrypt.compareSync(password, this.password)
+  },
+  createToken () {
+    return jwt.sign({ _id: this._id }, configKyes.jwtSecret)
+  },
+  toJson () {
+    return {
+      _id: this._id,
+      userName: this.userName,
+      token: `JWT ${this.createToken()}`
+    }
   }
 }
 

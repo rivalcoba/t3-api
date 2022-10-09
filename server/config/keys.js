@@ -13,7 +13,8 @@ const prodConfig = {
   mongoUrl: process.env.MONGO_URL_PROD
 }
 const defaultConfig = {
-  port: process.env.PORT || 3000
+  port: process.env.PORT || 3000,
+  jwtSecret: process.env.JWT_SECRET
 }
 
 function envConfig (env) {

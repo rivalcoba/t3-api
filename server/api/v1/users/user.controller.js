@@ -12,11 +12,11 @@ export async function signUp (req, res) {
 
 // Action Method para el login
 export function login (req, res, next) {
-  res.status(200).json(req.user)
+  res.status(200).json(req.user.toJson())
   // return next()
 }
 
 export async function getUser (req, res) {
-  const user = await User.findOne({ email: 'ivan.rivalcoba@gmail.com' })
+  const user = await User.findOne({ message: 'Private Route', email: 'ivan.rivalcoba@gmail.com' })
   res.status(200).json(user)
 }

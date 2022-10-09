@@ -1,13 +1,15 @@
 import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
+import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt'
+import configKeys from '../config/keys'
 import User from '../api/v1/users/user.model'
 import debug from '../services/logger'
 
-// Objeto de opciones para la estrategia
+// Objeto de opciones para la estrategia local
 const options = {
   usernameField: 'email'
 }
-// creando estrategia
+// Creando estrategia Local
 const localStrategy = new LocalStrategy(options, async (email, password, done) => {
   // Se usa el modelo de usuario para validar la existencia del usuario
   try {
@@ -29,8 +31,32 @@ const localStrategy = new LocalStrategy(options, async (email, password, done) =
   }
 })
 
-// Registrando la estrategia
-passport.use(localStrategy)
+// Objetos de opciones para la estrategia de JWT
+const jwtOpts = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: configKeys.jwtSecret
+}
 
-// Exportando middleware de autenticacion sin mantener las sesiones
+// Creamdp estartegia JWT
+const jwtStrategy = new JWTStrategy(jwtOpts, async (payload, done) => {
+  try {
+    // Identificando usuario por su ID
+    const user = User.findById(payload._id)
+    // Si no hay usuario
+    if (!user) {
+      return done(null, false, { message: 'Usuario no encontrado' })
+    }
+    // Si hay usuario retornalo
+    return done(null, user)
+  } catch (error) {
+    return done(error, false)
+  }
+})
+
+// Registrando las estrategias
+passport.use(localStrategy)
+passport.use(jwtStrategy)
+
+// Exportando middlewares de autenticacion sin mantener las sesiones
 export const authLocal = passport.authenticate('local', { session: false })
+export const authJwt = passport.authenticate('jwt', { session: false })
