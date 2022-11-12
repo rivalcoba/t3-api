@@ -7,7 +7,7 @@ import helmet from 'helmet'
 import cors from 'cors'
 import passport from 'passport'
 import configKeys from './config/keys'
-import addApiRoutes from './api/v1'
+import addApiRoutes from './routes'
 const { ValidationError } = require('express-validation')
 
 const app = express()

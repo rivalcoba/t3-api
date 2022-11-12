@@ -14,7 +14,8 @@ const prodConfig = {
 }
 const defaultConfig = {
   port: process.env.PORT || 3000,
-  jwtSecret: process.env.JWT_SECRET
+  jwtSecret: process.env.JWT_SECRET,
+  apiVersion: process.env.API_VERSION
 }
 
 function envConfig (env) {
