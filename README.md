@@ -51,7 +51,7 @@ Api que sigue standard REST para realizar publicaciones sobre diferentes temas.
 ## Rutas publicaciones
 
 - POST /api/v1/post : Te permite crear publicaciones
-  - TOKEN de autenticación
+  - Autenticación: Bearer Token con el prefix: _"authorization"_
   - title
   - text
 
